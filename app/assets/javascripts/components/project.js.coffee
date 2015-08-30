@@ -14,7 +14,7 @@
 
   render: ->
     div
-      className: 'some-class'
+      className: 'project'
       li
         null
         @props.project.name
@@ -22,3 +22,8 @@
         className: 'btn btn-danger'
         onClick: @handleDelete
         'Delete'
+      div
+        className: 'tasks'
+
+        React.createElement Tasks, project: @props.project
+

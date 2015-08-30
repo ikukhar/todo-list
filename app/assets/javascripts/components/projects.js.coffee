@@ -1,17 +1,17 @@
 
-{button,i, div, ul, li, input, form, h2} = React.DOM
+{button,i, div, ul, li, input, form, h4} = React.DOM
 
 @Projects = React.createClass
 
   getInitialState: ->
-    projects: @props.data
+    projects: @props.projects
 
   getDefaultProps: ->
     projects: []
 
-  addProject: (p) ->
+  addProject: (project) ->
     projects = @state.projects.slice()
-    projects.push p
+    projects.push project
     @setState projects: projects
 
   deleteProject: (p) ->
@@ -24,7 +24,7 @@
   render: ->
     div
       className: 'projects'
-      h2
+      h4
         className: 'title'
         'Projects'
 
