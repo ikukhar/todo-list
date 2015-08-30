@@ -1,5 +1,5 @@
 
-{button, fieldset, legend, input, form} = React.DOM
+{div, span, button, i, input, form} = React.DOM
 
 @ProjectForm = React.createClass
 
@@ -11,6 +11,7 @@
     @setState "#{name}": e.target.value
 
   handleSubmit: (e) ->
+    alert 1
     e.preventDefault()
     $.post '/projects/', {project: @state}, (data) =>
       @props.handleNewProject data
@@ -21,22 +22,33 @@
       @state.name
 
   render: ->
-    form
-      className: 'pure-form'
-      onSubmit: @handleSubmit
-      fieldset
-        legend
-          null
-          'Projects'
-        input
-          type: 'text'
-          placeholder: 'Project'
-          name: 'name'
-          value: @state.name
-          onChange: @handleChange
-        button
-          type: 'submit'
-          className: 'pure-button pure-button-primary'
-          disabled: !@valid()
-          'Create project'
+    div
+      className: 'row'
+      div
+        className: 'col-sm-8 col-sm-offset-2'
+        div
+          className: 'input-group input-group-lg'
+          span
+            className: 'input-group-btn'
+            button
+              className: 'btn btn-success btn-lg'
+              i
+                className: 'fa fa-chevron-right'
+          form
+            onSubmit: @handleSubmit
+            input
+              className: 'form-control input-lg'
+              type: 'text'
+              placeholder: 'New project'
+              value: @state.name
+              name: 'name'
+              onChange: @handleChange
+          span
+            className: 'input-group-btn'
+            button
+              type: 'submit'
+              className: 'btn btn-default btn-lg'
+              disabled: !@valid()
+              i
+                className: 'glyphicon glyphicon-plus'
 

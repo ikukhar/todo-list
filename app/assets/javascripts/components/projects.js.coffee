@@ -1,5 +1,5 @@
 
-{button,i, div, ul, li, input, form, h4} = React.DOM
+{div} = React.DOM
 
 @Projects = React.createClass
 
@@ -23,16 +23,6 @@
 
   render: ->
     div
-      className: 'projects'
-      h4
-        className: 'title'
-        'Projects'
+      className: ''
 
       React.createElement ProjectForm, handleNewProject: @addProject
-
-      ul null,
-        for project in @state.projects
-          React.createElement Project,
-                              key: project.id,
-                              project: project,
-                              handleDeleteProject: @deleteProject

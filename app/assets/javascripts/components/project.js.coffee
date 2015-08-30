@@ -1,5 +1,5 @@
 
-{a,i, div, ul, li, input, form, h2} = React.DOM
+{i, div, span, button, form} = React.DOM
 
 @Project = React.createClass
 
@@ -14,16 +14,32 @@
 
   render: ->
     div
-      className: 'project'
-      li
-        null
-        @props.project.name
-      a
-        className: 'btn btn-danger'
-        onClick: @handleDelete
-        'Delete'
+      className: 'row'
       div
-        className: 'tasks'
+        className: 'col-sm-8 col-sm-offset-2'
+        div
+          classNames: 'input-group input-group-lg'
+          span
+            className: 'input-group-btn'
+            button
+              className: 'btn btn-success btn-lg'
+              i
+                classNames: 'fa fa-chevron-right'
+          form
+            onSubmit: @handleSubmit
+            input
+              className: 'form-control input-lg'
+              type: 'text'
+              value: @props.project.name
+              name: 'name'
+          span
+            className: 'input-group-btn'
+            button
+              className: 'btn btn-default btn-lg destroy'
+              i
+                className: 'glyphicon glyphicon-remove'
+          div
+            className: 'tasks'
 
-        React.createElement Tasks, project: @props.project
+            React.createElement Tasks, project: @props.project
 
