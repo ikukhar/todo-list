@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'page#index'
+  post '/', to: 'page#create'
+  delete '/projects/(:id)', to: 'page#destroy_project'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
