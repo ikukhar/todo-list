@@ -48,8 +48,14 @@ input.input-lg:disabled {
   text-align: center;
 }
 
-.project-label, .task-label {
+.project-label {
   width: 56px;
+  border: 1px #ccc solid;
+  border-radius: 5px 0 0 5px;
+}
+
+.task-label {
+  width: 50px;
   border: 1px #ccc solid;
   border-radius: 5px 0 0 5px;
 }

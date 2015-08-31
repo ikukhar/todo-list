@@ -6,6 +6,6 @@ class Task < ActiveRecord::Base
 
   def update_project_status
     count_false = self.project.tasks.select{ |task| task.status == false}.count
-    self.project.update(status: true) if count_false == 0
+    self.project.update(status: count_false == 0 ? true : false)
   end
 end

@@ -43,6 +43,9 @@
   handleEdit: (e) ->
     @setState edit: true
 
+  changeTasks: ->
+    alert 'changeTsak'
+
   valid: ->
       @state.name
 
@@ -102,5 +105,7 @@
                   i
                     className: 'glyphicon glyphicon-remove'
 
-          React.createElement Tasks, project: @props.project
+          React.createElement Tasks,
+                              project: @props.project,
+                              handleChangeTasks: @changeTasks
 

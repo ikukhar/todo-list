@@ -12,7 +12,8 @@
     status: false
 
   changeStatus: (status) ->
-    @replaceState status: status
+    @setState status: status
+    @props.handleChangeStatus
 
   handleDelete: (e) ->
     e.preventDefault()
