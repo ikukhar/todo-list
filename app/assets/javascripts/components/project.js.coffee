@@ -12,9 +12,9 @@
   componentDidUpdate: (prevProps, prevState) ->
     unless @state.edit == prevState.edit
       if @state.edit
-        $('#project-input').focus()
+        $('#project-input-' + @props.project.id).focus()
       else
-        $('#project-input').blur()
+        $('#project-input-' + @props.project.id).blur()
 
   handleFocusOut: ->
     @setState edit: false
@@ -78,7 +78,7 @@
 
               if @state.status
                 input
-                  id: 'project-input'
+                  id: 'project-input-'+@props.project.id
                   className: 'form-control input-lg done-project'
                   type: 'text'
                   value: @state.name
@@ -87,7 +87,7 @@
                   onBlur: @handleFocusOut
               else
                 input
-                  id: 'project-input'
+                  id: 'project-input-'+@props.project.id
                   className: 'form-control input-lg'
                   type: 'text'
                   value: @state.name
