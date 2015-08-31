@@ -11,13 +11,6 @@
         'Todo List'
         p
           className: 'lead'
-          'React + Bootstrap'
+          'Rails + React + Bootstrap'
 
       React.createElement Projects, projects: @props.data
-
-      h4
-        className: 'text-center'
-        'by '
-        a
-          href: 'http://github.com/ikukhar'
-          'ikukhar'
