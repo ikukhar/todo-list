@@ -6,6 +6,8 @@
   getInitialState: ->
     edit: false
     name: @props.project.name
+    status: @props.project.status
+
 
   componentDidUpdate: (prevProps, prevState) ->
     unless @state.edit == prevState.edit
@@ -43,8 +45,12 @@
   handleEdit: (e) ->
     @setState edit: true
 
-  changeTasks: ->
-    alert 'changeTsak'
+  changeTasks: (tasks) ->
+    cnt_false = 0
+    for task in tasks
+      cnt_false += 1 if task.status == false
+
+    @setState status: cnt_false == 0 ? true : false 
 
   valid: ->
       @state.name
@@ -70,7 +76,7 @@
             form
               onSubmit: @handleSave
 
-              if @props.project.status
+              if @state.status
                 input
                   id: 'project-input'
                   className: 'form-control input-lg done-project'

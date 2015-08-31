@@ -13,7 +13,7 @@
 
   changeStatus: (status) ->
     @setState status: status
-    @props.handleChangeStatus
+    @props.handleChangeStatus @props.task, status
 
   handleDelete: (e) ->
     e.preventDefault()

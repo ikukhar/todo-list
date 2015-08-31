@@ -10,23 +10,23 @@
     tasks: []
 
   addTask: (task) ->
-    alert 'addTask'
     tasks = @state.tasks.slice()
     tasks.push task
     @setState tasks: tasks
-    @props.handleChangeTasks
+    @props.handleChangeTasks @state.tasks
 
   deleteTask: (task) ->
-    alert 'deleteTask'
     tasks = @state.tasks.slice()
     index = tasks.indexOf task
     tasks.splice index, 1
     @replaceState tasks: tasks
-    @props.handleChangeTasks
+    @props.handleChangeTasks @state.tasks
 
-  changeStatus: (e) ->
-    alert 'changeStatus'
-    @props.handleChangeTasks
+  changeStatus: (task, status) ->
+    tasks = @state.tasks.slice()
+    index = tasks.indexOf task
+    tasks[index].status = status
+    @props.handleChangeTasks @state.tasks
 
 
   render: ->
