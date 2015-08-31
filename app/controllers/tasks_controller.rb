@@ -12,9 +12,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    print @task.inspect
-    print "\n"
-    print task_params
     @task.update(task_params)
 
     if @task.errors.empty?

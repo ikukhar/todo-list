@@ -1,5 +1,5 @@
 
-{div, span, button, i, input, form} = React.DOM
+{div, span, button, a, i, input, form} = React.DOM
 
 @ProjectForm = React.createClass
 
@@ -11,7 +11,6 @@
     @setState "#{name}": e.target.value
 
   handleSubmit: (e) ->
-    alert 1
     e.preventDefault()
     $.post '/projects/', {project: @state}, (data) =>
       @props.handleNewProject data
@@ -29,11 +28,10 @@
         div
           className: 'input-group input-group-lg'
           span
-            className: 'input-group-btn'
-            button
-              className: 'btn btn-success btn-lg'
-              i
-                className: 'fa fa-chevron-right'
+            className: 'input-group-btn project-label'
+            i
+              className: 'glyphicon glyphicon-chevron-right'
+
           form
             onSubmit: @handleSubmit
             input
@@ -43,11 +41,12 @@
               value: @state.name
               name: 'name'
               onChange: @handleChange
+
           span
             className: 'input-group-btn'
             button
-              type: 'submit'
-              className: 'btn btn-default btn-lg'
+              onClick: @handleSubmit
+              className: 'btn btn-default btn-lg side-btn'
               disabled: !@valid()
               i
                 className: 'glyphicon glyphicon-plus'

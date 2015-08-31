@@ -1,5 +1,5 @@
 
-{button,i, div, ul, li, input, form, h2} = React.DOM
+{div, span, button, i, input, form} = React.DOM
 
 @TaskForm = React.createClass
 
@@ -23,22 +23,34 @@
       @state.name
 
   render: ->
-    form
-      className: 'form-inline'
-      onSubmit: @handleSubmit
+    div
+      className: 'row'
       div
-        className: 'form-group'
-        input
-          type: 'text'
-          className: 'form-control'
-          placeholder: 'Name'
-          name: 'name'
-          value: @state.name
-          onChange: @handleChange
-      button
-        type: 'submit'
-        className: 'btn btn-primary'
-        disabled: !@valid()
-        'Create task'
+        className: 'col-sm-10 col-sm-offset-1 task-height'
+        div
+          className: 'new-task-form'
+          span
+            className: 'input-group input-group-lg'
+            span
+              className: 'input-group-btn task-label'
+              i
+                className: 'glyphicon glyphicon-chevron-right'
 
+            form
+              onSubmit: @handleSubmit
+              input
+                className: 'form-control input-lg'
+                type: 'text'
+                placeholder: 'New task'
+                value: @state.name
+                name: 'name'
+                onChange: @handleChange
 
+            span
+              className: 'input-group-btn'
+              button
+                onClick: @handleSubmit
+                className: 'btn btn-default btn-lg side-btn'
+                disabled: !@valid()
+                i
+                  className: 'glyphicon glyphicon-plus'

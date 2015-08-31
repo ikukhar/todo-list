@@ -1,7 +1,24 @@
 
-{i, div, span, button, form} = React.DOM
+{i, div, span, button, form, input} = React.DOM
 
 @Project = React.createClass
+
+  getInitialState: ->
+    edit: false
+    name: @props.project.name
+
+  componentDidUpdate: (prevProps, prevState) ->
+    unless @state.edit == prevState.edit
+      if @state.edit
+        $('#project-input').focus()
+      else
+        $('#project-input').blur()
+
+  handleFocusOut: ->
+    @setState edit: false
+
+  handleChange: (e) ->
+    @setState name: e.target.value
 
   handleDelete: (e) ->
     e.preventDefault()
@@ -12,34 +29,78 @@
       success: () =>
         @props.handleDeleteProject @props.project
 
+  handleSave: (e) ->
+    e.preventDefault()
+    $.ajax
+      method: 'PUT'
+      url: "/projects/#{ @props.project.id }"
+      data: {project: {name: @state.name}}
+      dataType: 'JSON'
+      success: () =>
+        @setState edit: false
+        @props.handleSaveProject @props.project
+
+  handleEdit: (e) ->
+    @setState edit: true
+
+  valid: ->
+      @state.name
+
+
   render: ->
     div
       className: 'row'
       div
         className: 'col-sm-8 col-sm-offset-2'
         div
-          classNames: 'input-group input-group-lg'
-          span
-            className: 'input-group-btn'
-            button
-              className: 'btn btn-success btn-lg'
-              i
-                classNames: 'fa fa-chevron-right'
-          form
-            onSubmit: @handleSubmit
-            input
-              className: 'form-control input-lg'
-              type: 'text'
-              value: @props.project.name
-              name: 'name'
-          span
-            className: 'input-group-btn'
-            button
-              className: 'btn btn-default btn-lg destroy'
-              i
-                className: 'glyphicon glyphicon-remove'
+          className: 'project-form'
           div
-            className: 'tasks'
+            className: 'input-group input-group-lg'
+            span
+              className: 'input-group-btn'
+              button
+                className: 'btn btn-default btn-lg side-btn'
+                onClick: @handleEdit
+                i
+                  className: 'glyphicon glyphicon-pencil'
 
-            React.createElement Tasks, project: @props.project
+            form
+              onSubmit: @handleSave
+
+              if @props.project.status
+                input
+                  id: 'project-input'
+                  className: 'form-control input-lg done-project'
+                  type: 'text'
+                  value: @state.name
+                  disabled: not @state.edit
+                  onChange: @handleChange
+                  onBlur: @handleFocusOut
+              else
+                input
+                  id: 'project-input'
+                  className: 'form-control input-lg'
+                  type: 'text'
+                  value: @state.name
+                  disabled: not @state.edit
+                  onChange: @handleChange
+                  onBlur: @handleFocusOut
+
+            span
+              className: 'input-group-btn'
+              if @state.edit
+                button
+                  className: 'btn btn-default btn-lg side-btn'
+                  onClick: @handleSave
+                  disabled: !@valid()
+                  i
+                    className: 'glyphicon glyphicon-floppy-disk'
+              else
+                button
+                  className: 'btn btn-default btn-lg side-btn remove'
+                  onClick: @handleDelete
+                  i
+                    className: 'glyphicon glyphicon-remove'
+
+          React.createElement Tasks, project: @props.project
 

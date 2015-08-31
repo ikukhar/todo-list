@@ -1,5 +1,5 @@
 
-{button,i, div, ul, li, input, form, h4} = React.DOM
+{div} = React.DOM
 
 @Tasks = React.createClass
 
@@ -22,19 +22,15 @@
 
   render: ->
     div
-      className: 'tasks-in'
-      h4
-        className: 'title'
-        'Tasks'
+      className: ''
 
+      for task in @state.tasks
+        React.createElement Task,
+                            key: task.id,
+                            task: task,
+                            project: @props.project,
+                            handleDeleteTask: @deleteTask,
+                            handleChangeStatus: @changeStatus
+      
       React.createElement TaskForm, handleNewTask: @addTask, project: @props.project
 
-      div
-        className: 'task'
-        for task in @state.tasks
-          React.createElement Task,
-                              key: task.id,
-                              task: task,
-                              project: @props.project,
-                              handleDeleteTask: @deleteTask,
-                              handleChangeStatus: @changeStatus

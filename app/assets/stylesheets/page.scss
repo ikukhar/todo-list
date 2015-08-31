@@ -1,3 +1,60 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project-form {
+  border: 1px #DDD solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #DDD
+}
+
+.new-task-form, .task-form {
+  margin-top: 5px;
+}
+
+input.input-lg:disabled, button.btn:disabled {
+  cursor: default;
+}
+
+input.input-lg:disabled {
+  background-color: white
+}
+
+.btn.btn-default.btn-lg.side-btn {
+  background-color: #eeeeee
+}
+
+.btn.btn-default.btn-lg.side-btn:hover {
+  color: #00CD00
+}
+
+.btn.btn-default.btn-lg.side-btn.remove:hover {
+  color: #EE2C2C
+}
+
+.project-label {
+  background-color: #4a9ef0;
+  border-color: #4a9ef0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.task-label {
+  background-color: #21B6A8;
+  border-color: #21B6A8;
+  font-size: 14px;
+  text-align: center;
+}
+
+.project-label, .task-label {
+  width: 56px;
+  border: 1px #ccc solid;
+  border-radius: 5px 0 0 5px;
+}
+
+input.input-lg.done-task, input.input-lg.done-project {
+  text-decoration: line-through;
+  background-color: #eeeeee;
+}

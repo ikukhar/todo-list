@@ -1,6 +1,5 @@
 
-
-{a,i, div, ul, li, input, form, h5, label} = React.DOM
+{i, div, span, button, form, input} = React.DOM
 
 @Task = React.createClass
 
@@ -36,16 +35,39 @@
 
   render: ->
     div
-      className: 'task'
-      input
-        onChange: @handleChangeStatus,
-        type: 'checkbox',
-        id: @props.task.id,
-        name: @props.task.name,
-        checked: (@state.status ? 'checked' : '') 
-      h5 null,
-        @props.task.name
-      a
-        className: 'btn btn-danger'
-        onClick: @handleDelete
-        'Delete'
+      className: 'row'
+      div
+        className: 'col-sm-10 col-sm-offset-1'
+        div
+          className: 'task-form'
+          div
+            className: 'input-group input-group-lg'
+            span
+              className: 'input-group-addon'
+              input
+                className: 'toggle'
+                type: 'checkbox'
+                checked: (@state.status ? 'checked' : '')
+                onChange: @handleChangeStatus
+                id: @props.task.id
+            form
+              onSubmit: @handleDelete
+              if @state.status
+                input
+                  className: "form-control input-lg done-task"
+                  type: 'text'
+                  value: @props.task.name
+                  disabled: true
+              else
+                input
+                  className: "form-control input-lg"
+                  type: 'text'
+                  value: @props.task.name
+                  disabled: true
+            span
+              className: 'input-group-btn'
+              button
+                onClick: @handleDelete
+                className: 'btn btn-default btn-lg side-btn remove'
+                i
+                  className: 'glyphicon glyphicon-remove'

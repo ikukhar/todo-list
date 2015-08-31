@@ -10,9 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "page";
 
 @import url(http://fonts.googleapis.com/css?family=Quattrocento:700);
 
@@ -20,15 +21,3 @@ body {
   background-color:#f8f8f8;
   font-family: 'Quattrocento', serif;
 }
-
-.project-head {
-  margin-left: 0px;
-  margin-right: 0px;
-  background-color: #FFF;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #DDD;
-  border-radius: 4px 4px 0px 0px;
-  box-shadow: none;
-}
-

@@ -17,7 +17,7 @@
 
       h4
         className: 'text-center'
-        'by ikukhar '
+        'by '
         a
           href: 'http://github.com/ikukhar'
           'ikukhar'
