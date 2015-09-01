@@ -14,15 +14,11 @@
     projects.unshift project
     @setState projects: projects
 
-  deleteProject: (p) ->
+  deleteProject: (project) ->
     projects = @state.projects.slice()
-    index = projects.indexOf p
+    index = projects.indexOf project
     projects.splice index, 1
     @replaceState projects: projects
-
-  saveProject: (p) ->
-    @replaceState projects: projects
-
 
   render: ->
     div
@@ -31,8 +27,7 @@
       React.createElement ProjectForm, handleNewProject: @addProject
 
       for project in @state.projects
-        React.createElement Project, 
-                            key: project.id, 
-                            project: project, 
+        React.createElement Project,
+                            key: project.id,
+                            project: project,
                             handleDeleteProject: @deleteProject
-                            handleSaveProject: @saveProject

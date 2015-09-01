@@ -8,19 +8,12 @@
     name: @props.project.name
     status: @props.project.status
 
-
   componentDidUpdate: (prevProps, prevState) ->
     unless @state.edit == prevState.edit
       if @state.edit
         $('#project-input-' + @props.project.id).focus()
       else
         $('#project-input-' + @props.project.id).blur()
-
-  handleFocusOut: ->
-    @setState edit: false
-
-  handleChange: (e) ->
-    @setState name: e.target.value
 
   handleDelete: (e) ->
     e.preventDefault()
@@ -40,10 +33,18 @@
       dataType: 'JSON'
       success: () =>
         @setState edit: false
-        @props.handleSaveProject @props.project
+
+  handleChange: (e) ->
+    @setState name: e.target.value
 
   handleEdit: (e) ->
     @setState edit: true
+
+  handleClick: (e) ->
+    if @state.edit
+      @handleSave e
+    else
+      @handleDelete e
 
   changeTasks: (tasks) ->
     cnt_false = 0
@@ -51,9 +52,6 @@
       cnt_false += 1 if task.status == false
 
     @setState status: cnt_false == 0 ? true : false 
-
-  valid: ->
-      @state.name
 
 
   render: ->
@@ -81,35 +79,34 @@
                   id: 'project-input-'+@props.project.id
                   className: 'form-control input-lg done-project'
                   type: 'text'
-                  value: @state.name
+                  defaultValue: @state.name
                   disabled: not @state.edit
                   onChange: @handleChange
-                  onBlur: @handleFocusOut
               else
                 input
                   id: 'project-input-'+@props.project.id
                   className: 'form-control input-lg'
                   type: 'text'
-                  value: @state.name
+                  defaultValue: @state.name
                   disabled: not @state.edit
                   onChange: @handleChange
-                  onBlur: @handleFocusOut
 
             span
               className: 'input-group-btn'
               if @state.edit
                 button
                   className: 'btn btn-default btn-lg side-btn'
-                  onClick: @handleSave
-                  disabled: !@valid()
+                  id: 'project-save-button-'+@props.project.id
+                  onClick: @handleClick
                   i
                     className: 'glyphicon glyphicon-floppy-disk'
-              else
-                button
-                  className: 'btn btn-default btn-lg side-btn remove'
-                  onClick: @handleDelete
-                  i
-                    className: 'glyphicon glyphicon-remove'
+
+              button
+                className: 'btn btn-default btn-lg side-btn remove'
+                id: 'project-delete-button-'+@props.project.id
+                onClick: @handleClick
+                i
+                  className: 'glyphicon glyphicon-remove'
 
           React.createElement Tasks,
                               project: @props.project,
