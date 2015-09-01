@@ -40,12 +40,6 @@
   handleEdit: (e) ->
     @setState edit: true
 
-  handleClick: (e) ->
-    if @state.edit
-      @handleSave e
-    else
-      @handleDelete e
-
   changeTasks: (tasks) ->
     cnt_false = 0
     for task in tasks
@@ -97,14 +91,14 @@
                 button
                   className: 'btn btn-default btn-lg side-btn'
                   id: 'project-save-button-'+@props.project.id
-                  onClick: @handleClick
+                  onClick: @handleSave
                   i
                     className: 'glyphicon glyphicon-floppy-disk'
 
               button
                 className: 'btn btn-default btn-lg side-btn remove'
                 id: 'project-delete-button-'+@props.project.id
-                onClick: @handleClick
+                onClick: @handleDelete
                 i
                   className: 'glyphicon glyphicon-remove'
 
