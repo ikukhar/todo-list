@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   def create
+    print project_params
     @project = Project.new(project_params)
 
     if @project.save
@@ -31,7 +32,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name).merge(user_id: current_user.id)
   end
 
 end
