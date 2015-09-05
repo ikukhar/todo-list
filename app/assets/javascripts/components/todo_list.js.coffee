@@ -6,11 +6,11 @@
   render: ->
     div
       className: 'container'
-      h1
-        className: 'text-center'
-        'Todo List'
-        p
-          className: 'lead'
-          'Rails + React + Bootstrap'
+      # h1
+      #   className: 'text-center'
+      #   'Todo List'
+      #   p
+      #     className: 'lead'
+      #     'Rails + React + Bootstrap'
 
       React.createElement Projects, projects: @props.data
