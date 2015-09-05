@@ -24,7 +24,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml'
 gem 'react-rails', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'font-awesome-sass', '~> 4.4.0'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-vkontakte'
+gem 'omniauth-github'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

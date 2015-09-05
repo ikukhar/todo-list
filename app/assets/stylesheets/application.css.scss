@@ -11,8 +11,11 @@
  * file per style scope.
  *
  */
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-social";
 @import "page";
 
 @import url(http://fonts.googleapis.com/css?family=Quattrocento:700);
