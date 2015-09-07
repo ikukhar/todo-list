@@ -1,0 +1,5 @@
+
+- flash.each do |level, message|
+  %div{:class => "alert #{flash_level(level)}"}
+    %button.close{:"data-dismiss" => 'alert'}= "×"
+    = message

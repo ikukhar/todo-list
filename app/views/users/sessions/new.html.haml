@@ -1,8 +1,8 @@
 .container
   .col-sm-6.col-sm-offset-3
     %h2 Sign in
-    -# %p
-    -#   =render 'devise/shared/social_sign_in'
+    %p
+      =render 'devise/shared/social_sign_in'
 
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = devise_error_messages!
@@ -17,6 +17,6 @@
           = f.check_box :remember_me
           = f.label :remember_me
       .actions
-        = f.submit "Log in", class: 'btn btn-primary'
+        = f.submit "Sign in", class: 'btn btn-primary'
         %h4 &nbsp;&nbsp; or &nbsp;&nbsp;
         %h4= render "devise/shared/links"
