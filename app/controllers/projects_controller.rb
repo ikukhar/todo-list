@@ -1,11 +1,10 @@
 class ProjectsController < ApplicationController
 
   def create
-    print project_params
     @project = Project.new(project_params)
 
     if @project.save
-      render json: (JSON.parse @project.to_json(include: :tasks))
+      render json: @project.to_json
     else
       render json: @project.errors, status: :unprocessable_entity
     end
@@ -16,7 +15,7 @@ class ProjectsController < ApplicationController
     @project.update(project_params)
 
     if @project.errors.empty?
-      render json: (JSON.parse @project.to_json(include: :tasks))
+      render json: @project.to_json
     else
       render json: @project.errors, status: :unprocessable_entity
     end

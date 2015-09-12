@@ -50,6 +50,11 @@ group :development, :test do
   gem 'spring'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  # Testing
+  gem 'rspec-rails', '~> 3.0'
+  gem 'json_spec', '~> 1.1.4'
+  gem 'spork', github: 'sporkrb/spork'
+  gem 'spork-rails'
 end
 
 # heroku
